@@ -5,8 +5,9 @@
 >因此，决定借鉴一下别人实现的代码，看看具体的实现思想，也方便更加深入的理解这些机器学习算法。
 其中包括：
 * 1.GBDT算法:[https://github.com/Freemanzxp/GBDT_Simple_Tutorial](https://github.com/Freemanzxp/GBDT_Simple_Tutorial)
+* 2.DecisionTree:[https://github.com/lucksd356/DecisionTrees](https://github.com/lucksd356/DecisionTrees)，只实现了ID3算法，其他两种C4.5，CART在计算增益这一块用的是不同的指标
 * TODO
 * 2.XgBoost:
 * 3.AdaBoost
 * 4.SVM
-* 5.DecisionTree
+
