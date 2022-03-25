@@ -7,7 +7,8 @@
 * 1.GBDT算法:[https://github.com/Freemanzxp/GBDT_Simple_Tutorial](https://github.com/Freemanzxp/GBDT_Simple_Tutorial)
 * 2.DecisionTree:[https://github.com/lucksd356/DecisionTrees](https://github.com/lucksd356/DecisionTrees)，只实现了ID3算法，其他两种C4.5，CART在计算增益这一块用的是不同的指标
 * TODO
-* 2.XgBoost:
-* 3.AdaBoost
-* 4.SVM
+* 3.XgBoost:
+* 4.RandomForest:
+* 5.AdaBoost
+* 6.SVM
 

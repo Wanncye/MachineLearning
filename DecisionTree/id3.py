@@ -25,6 +25,10 @@ def entropy(freq):
     # remove prob 0 
     freq_0 = freq[np.array(freq).nonzero()[0]]
     prob_0 = freq_0/float(freq_0.sum())
+    # 对于不同的决策树算法，这一块计算不同
+    # C4.5用信息增益率
+    # ID3用信息增益
+    # CART用GINI系数
     return -np.sum(prob_0*np.log(prob_0))
 
 class DecisionTreeID3(object):
