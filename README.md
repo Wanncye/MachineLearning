@@ -11,8 +11,13 @@
 >Xgboost的目标函数、公式推导、GBDT与Xgboost的区别、Xgboost的正则化原理，这些都是需要掌握的问题。
 * 4.RandomForest:[https://github.com/zhaoxingfeng/RandomForest](https://github.com/zhaoxingfeng/RandomForest)
 >RF为什么要随机抽样？又为什么做有放回的采样？
-* 5.AdaBoost
+* 5.AdaBoost:[https://github.com/jaimeps/adaboost-implementation/tree/master](https://github.com/jaimeps/adaboost-implementation/tree/master)
 >权值更新的方法、为什么能快速收敛、优缺点
+* 6.SVM:[https://vimsky.com/article/222.html](https://vimsky.com/article/222.html),实现的是HingeLoss版本的SVM
+>什么叫硬间隔？什么叫软间隔？SVM为什么采用间隔最大化？为什么使用核函数？
 * TODO
-* 6.SVM
+* 7.MLE、MAP、贝叶斯估计、EM
+* 8.PCA
+* 9.LDA
+* 10.KNN
 
