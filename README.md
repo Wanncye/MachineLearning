@@ -18,9 +18,11 @@
 * 6.SVM:[https://vimsky.com/article/222.html](https://vimsky.com/article/222.html),实现的是HingeLoss版本的SVM
 >什么叫硬间隔？什么叫软间隔？SVM为什么采用间隔最大化？为什么使用核函数？
 * 7.MLE:[https://blog.csdn.net/pengjian444/article/details/71215965](https://blog.csdn.net/pengjian444/article/details/71215965)
+>MLE、MAP、贝叶斯估计之间的区别与联系，说老实话，贝叶斯估计没看懂
+* 8.GMM(EM):[https://github.com/SmallVagetable/machine_learning_python](https://github.com/SmallVagetable/machine_learning_python)
+>这个给的链接库其实已经有好多写好了的算法，也是可以借鉴的。E-step：在已知均值和方差的情况下，判断样本来自第K个模型的概率；M-step：在得知样本来自哪个模型之后，可以通过MLE来估计高斯分布的均值和方差。如此循环，直至收敛。
+* 9.PCA
 * TODO
-* 8.MAP、贝叶斯估计、EM
-* 8.PCA
 * 9.LDA
 * 10.KNN
 
