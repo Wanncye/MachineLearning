@@ -25,8 +25,9 @@
 >PCA和LDA数据假设都符合高斯分布，但是LDA是监督算法，而PCA是无监督算法。LDA降维最多降到类别数k-1的维数，如果我们降维的维度大于k-1，则不能使用LDA。具体LDA原理以及与PCA的区别见[链接](https://www.cnblogs.com/pinard/p/6244265.html)
 * 10.PCA(和LDA来自同一个git主)
 >从两个算法（PCA和LDA）的流程看，PCA和LDA很相似，只是LDA是加入了标签信息，计算了类内方差，内间均值，然后对这两个数的乘积求特征值、特征向量；而PCA则直接求数据之间的协方差的特征值和特征向量。共同的做法就是取前k个特征值、特征向量，将样本投影到这歌空间中去（包括SVD也是酱紫）。
+* 10.KNN:[https://www.cnblogs.com/lyuzt/p/10471617.html](https://www.cnblogs.com/lyuzt/p/10471617.html)
+* 11.K-Mean:[https://github.com/kjahan/k_means](https://github.com/kjahan/k_means)
+>K-Mean要注意的问题就是：K值如何选取，K个初始点如何选取
 * TODO
-* 10.KNN
-* 11.K-Mean
 * --T-SNE
 
