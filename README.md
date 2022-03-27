@@ -22,6 +22,7 @@
 * 8.GMM(EM):[https://github.com/SmallVagetable/machine_learning_python](https://github.com/SmallVagetable/machine_learning_python)
 >这个给的链接库其实已经有好多写好了的算法，也是可以借鉴的。E-step：在已知均值和方差的情况下，判断样本来自第K个模型的概率；M-step：在得知样本来自哪个模型之后，可以通过MLE来估计高斯分布的均值和方差。如此循环，直至收敛。
 * 9.PCA
+
 * TODO
 * 9.LDA
 * 10.KNN
