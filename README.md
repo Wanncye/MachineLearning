@@ -2,7 +2,7 @@
 >我发现只看机器学习原理，存在两个问题：
 * 1.有些算法的原理难以理解
 * 2.就算理解了，也不知道实现思路，只能当个调包侠  
->因此，决定借鉴一下别人实现的代码，看看具体的实现思想，也方便更加深入的理解这些机器学习算法。
+>因此，决定借鉴一下别人实现的代码，看看具体的实现思想，也方便更加深入的理解这些机器学习算法。所以，这个仓库适合对下列算法有一定基础了解的，但是对代码实现不清楚的朋友。
 其中包括：
 * 1.GBDT算法:[https://github.com/Freemanzxp/GBDT_Simple_Tutorial](https://github.com/Freemanzxp/GBDT_Simple_Tutorial)
 >如何做特征选择？如何做分类？
@@ -21,9 +21,10 @@
 >MLE、MAP、贝叶斯估计之间的区别与联系，说老实话，贝叶斯估计没看懂
 * 8.GMM(EM):[https://github.com/SmallVagetable/machine_learning_python](https://github.com/SmallVagetable/machine_learning_python)
 >这个给的链接库其实已经有好多写好了的算法，也是可以借鉴的。E-step：在已知均值和方差的情况下，判断样本来自第K个模型的概率；M-step：在得知样本来自哪个模型之后，可以通过MLE来估计高斯分布的均值和方差。如此循环，直至收敛。
-* 9.PCA
-
+* 9.LDA:[https://github.com/heucoder/dimensionality_reduction_alo_codes](https://github.com/heucoder/dimensionality_reduction_alo_codes)
+>PCA和LDA数据假设都符合高斯分布，但是LDA是监督算法，而PCA是无监督算法。LDA降维最多降到类别数k-1的维数，如果我们降维的维度大于k-1，则不能使用LDA。具体LDA原理以及与PCA的区别见[链接](https://www.cnblogs.com/pinard/p/6244265.html)
+* 10.PCA(和LDA来自同一个git主)
+>从两个算法（PCA和LDA）的流程看，PCA和LDA很相似，只是LDA是加入了标签信息，计算了类内方差，内间均值，然后对这两个数的乘积求特征值、特征向量；而PCA则直接求数据之间的协方差的特征值和特征向量。共同的做法就是取前k个特征值、特征向量，将样本投影到这歌空间中去（包括SVD也是酱紫）。
 * TODO
-* 9.LDA
 * 10.KNN
 
