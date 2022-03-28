@@ -19,14 +19,14 @@ class GMM(object):
 
     # gmm入口
     def GMM_EM(self):
-        self.scale_data()
-        self.init_params()
+        self.scale_data()   #数据预处理，归一化至[0，1]，每个维度上操作。
+        self.init_params()  #初始化参数，均值为随机，协方差为0.1的对角矩阵，因为有k个高斯分布，所以有k个协方差，alpha初始化为1/K
         for i in range(self.times):
-            log_prob_norm, self.gamma = self.e_step(self.X)
+            log_prob_norm, self.gamma = self.e_step(self.X)  #gamma相当于过了一个softmax，得到的是变量属于哪一个高斯分布的概率
             self.mu, self.cov, self.alpha = self.m_step()
             newloglike = self.loglikelihood(log_prob_norm)
             # print(newloglike)
-            if abs(newloglike - self.loglike) < self.tol:
+            if abs(newloglike - self.loglike) < self.tol:  #迭代值收敛
                 break
             self.loglike = newloglike
 
@@ -38,14 +38,14 @@ class GMM(object):
         return np.array(category)
 
 
-    #e步，估计gamma
+    #e步，估计gamma，就是特征属于哪一个高斯分布的概率
     def e_step(self, data):
-        gamma_log_prob = np.mat(np.zeros((self.N, self.K)))
+        gamma_log_prob = np.mat(np.zeros((self.N, self.K)))   #每一个样本属于第K个高斯分布的概率
 
-        for k in range(self.K):
+        for k in range(self.K):   #计算在第K个高斯分布下，样本出现的对应概率
             gamma_log_prob[:, k] = log_weight_prob(data, self.alpha[k], self.mu[k], self.cov[k])
 
-        log_prob_norm = logsumexp(gamma_log_prob, axis=1)
+        log_prob_norm = logsumexp(gamma_log_prob, axis=1) #logsumexp是先对矩阵以e次方求和取对数
         log_gamma = gamma_log_prob - log_prob_norm[:, np.newaxis]
         return log_prob_norm, np.exp(log_gamma)
 
@@ -57,8 +57,8 @@ class GMM(object):
         newalpha = np.zeros(self.K)
         for k in range(self.K):
             Nk = np.sum(self.gamma[:, k])
-            newmu[k, :] = np.dot(self.gamma[:, k].T, self.X) / Nk
-            cov_k = self.compute_cov(k, Nk)
+            newmu[k, :] = np.dot(self.gamma[:, k].T, self.X) / Nk   #考虑特征属于哪一个高斯分布之后，计算均值，相当于一个加权平均
+            cov_k = self.compute_cov(k, Nk) #和求均值一样的道理
             newcov.append(cov_k)
             newalpha[k] = Nk / self.N
 
@@ -74,7 +74,7 @@ class GMM(object):
         return cov
 
 
-    #数据预处理
+    #数据预处理，归一化至[0，1]，每个维度上操作
     def scale_data(self):
         for d in range(self.D):
             max_ = self.X[:, d].max()
