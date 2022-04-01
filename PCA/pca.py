@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
+from PIL import Image
 
 def pca(data, n_dim):
     '''
@@ -56,6 +57,36 @@ def highdim_pca(data, n_dim):
     data_ndim = np.dot(data, picked_eig_vector)
     return data_ndim
 
+
+def pca_img(data, k):
+    # 求图片每一行的均值
+    mean = np.array([np.mean(data[:, index]) for index in range(data.shape[1])])
+    # 去中心化
+    normal_data = data - mean
+    # 得到协方差矩阵：1/n＊(X * X^T)，这里不除以n也不影响
+    matrix = np.dot(np.transpose(data), data)
+    # 此函数可用来计算特征值及对应的特征向量
+    # eig_val存储特征值，eig_vec存储对应的特征向量
+    eig_val, eig_vec = np.linalg.eig(matrix)
+    # 对矩阵操作，按从小到大的顺序对应获得此数的次序（从0开始）
+    # 比如说有矩阵[2,1,3,－1]
+    # 那么将按数组的顺序[－1,1，2，3］输出对应的下标
+    # 即[2，1，3，0]
+    eig_index = np.argsort(eig_val)
+    # 取下标的倒数k位，也就是取前k个大特征值的下标
+    eig_vec_index = eig_index[:-(k+1):-1]
+    # 取前k个大特征值的特征向量
+    feature = eig_vec[:, eig_vec_index]
+    # 将特征值与对应特征向量矩阵乘得到最后的pca降维图
+    new_data = np.dot(normal_data, feature)
+    # 将降维后的数据映射回原空间
+    rec_data = np.dot(new_data, np.transpose(feature)) + mean
+    # 压缩后的数据也需要乘100还原成RGB值的范围
+    newImage = Image.fromarray(np.uint8(rec_data*100))
+    # 将处理好的降维图片存入文件夹
+    newImage.convert('RGB').save('k=' + str(k) + '.jpg')
+    newImage.show()
+
 if __name__ == "__main__":
     data = load_iris()
     X = data.data
@@ -73,3 +104,32 @@ if __name__ == "__main__":
     plt.scatter(data_2d2[:, 0], data_2d2[:, 1], c = Y)
     plt.savefig("PCA.png")
     plt.show()
+
+
+    png_name = '809'
+    img = Image.open(png_name + '.png')
+    img = np.copy(img)
+    img_origin_shape = img.shape
+    print(img.shape)
+    plt.figure(figsize=(8,4))
+    plt.subplot(121)
+    plt.imshow(img)
+    plt.title("origin")
+
+    img = img.reshape(-1,3)
+    sklearn_pca_img = PCA(n_components=2)
+    img = sklearn_pca_img.fit_transform(img)
+    img = sklearn_pca_img.inverse_transform(img)
+    img = img.reshape(img_origin_shape).astype(np.uint8)
+    # img_r = sklearn_pca_img.fit_transform(img[:,:,0])
+    # img_r = sklearn_pca_img.inverse_transform(img_r)
+    # img_g = sklearn_pca_img.fit_transform(img[:,:,1])
+    # img_g = sklearn_pca_img.inverse_transform(img_g)
+    # img_b = sklearn_pca_img.fit_transform(img[:,:,2])
+    # img_b = sklearn_pca_img.inverse_transform(img_b)
+    # img = np.stack((img_r,img_g,img_b), axis=2).astype(np.uint8)
+    print(img.shape)
+    plt.subplot(122)
+    plt.title("after pca")
+    plt.imshow(img)
+    plt.savefig(png_name + "_pca.png")
